@@ -2,39 +2,43 @@ import React ,{useState} from 'react'
 import './App.css';
 import Card from './Card'
 function App() {
-  const buttongroup =(
-    <div>
-    <button className="button button3">Red</button>
-  <button className="button button5">Black</button>
-    </div>
-  )
+ 
   const  [name, setName] = useState('Nimesh Poudel')
  const [showCard, setshowCard] = useState(false)
-  const ChangeHandeler=(name)=>{
-    setName(name)
-  }
+ const  [objUserDetails, setobjUserDetails] = useState([
+   {
+  id: '01',
+  name: 'mane Schuster',
+  title: ' Operations Producer',
+  avatar: 'https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
+ },
+ {
+  id: '02',
+  name: 'sahe Schuster',
+  title: 'International  Producer',
+  avatar: 'https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
+ },
+{
+  id: '03',
+  name: 'hehanjana Schuster',
+  title: 'International Operations ',
+  avatar: 'https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
+ }
+])
+const objeForUser=()=>{
+  setobjUserDetails(objUserDetails)
+}
+
+
   const changevalue=()=>{
     setshowCard(!showCard)
   }
  
-  const ChangeInputHandler=(event)=>{
-    setName(event.target.value)
-  }
-  
-   const  [job, setJob] = useState('Manager')
-   const changeInputHandlerJob=(event)=>{
-     setJob(event.target.value)
-   }
    const hideandshow=  showCard? <Card
     avatar='https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
-    name={name}
-    job={job}
-    onChangeName2={()=>ChangeHandeler('Roshan Poudel1')}
-    onInput={ChangeInputHandler}
-    onInputJob={changeInputHandlerJob}
+    name={objUserDetails.name}
+    job=""
     >
-     
-     {buttongroup}
     </Card>
     :null
   return (

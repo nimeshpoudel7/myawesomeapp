@@ -7,7 +7,7 @@
   width: 20%;
   margin-top: 3px;
   margin-bottom: 34px;
-  margin-left: 49px;
+  margin-left: 40%;
 }
 
 .card:hover {
@@ -31,5 +31,5 @@
   margin: 4px 2px;
   cursor: pointer;
 }
-.button3 {background-color: #f44336;} /* Red */ 
-.button5 {background-color: #555555;} /* Black */
+.button-red {background-color: #f44336;} /* Red */ 
+.button-grey {background-color: #555555;} /* Black */
