@@ -9,7 +9,7 @@ const Card = (props) => {
       
         <h4><b>{props.name}</b></h4> 
         <p>{props.job}</p> 
-        <button className='button button-red'>Delete</button>
+        <button className='button button-red'onClick={props.ondelete}>Delete</button>
         <div>{props.children}</div>
       </div>
     </div>
