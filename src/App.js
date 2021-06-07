@@ -1,8 +1,9 @@
 import React ,{useState} from 'react'
 import './App.css';
 import Card from './Card'
-import styled,{ThemeProvider, css} from 'styled-components'
-import Button from './element/Button'
+import {ThemeProvider} from 'styled-components'
+import {Button,Input} from './element/Button'
+
 const theme = {
   mango:'orange',
   primary:'green'
@@ -145,6 +146,7 @@ const NamechangeOject=(event,id)=>{
     <Button color='mango' length={objUserDetails.length}>hello</Button>
     <button className={classes.join(' ')}  onClick={changevalue} >{textmsg}</button>
     {hideandshow}
+    <Input color='mango'></Input>
     </ThemeProvider>
   </div>
   );
