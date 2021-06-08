@@ -95,6 +95,10 @@ class App extends Component {
      this.setState({showCard:!this.state.showCard})
   }
 
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('App js getDerivedStateFromProps', props)
+  //   return state
+  // }
    
   // const newobj=objUserDetails.reduce((acc,index)=>{
     
