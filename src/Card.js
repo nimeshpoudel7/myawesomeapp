@@ -1,23 +1,26 @@
-import React from 'react'
+import React,{Component} from 'react'
 import './App.css';
-const Card = (props) => {
-    console.log(props)
-    return (
+class Card extends Component  {
+    // console.log(this.props)
+    render(){
+      return (
         <div className="card">
-      <img src={props.avatar} alt="Avatar" style={{width: '100%'}} />
+      <img src={this.props.avatar} alt="Avatar" style={{width: '100%'}} />
       <div className="container">
       
-        <h4><b>{props.name}</b></h4>
+        <h4><b>{this.props.name}</b></h4>
         {/* <div>
-        <input type='text' value={props.name} onChange={props.onChangeName}/>
+        <input type='text' value={this.props.name} onChange={this.props.onChangeName}/>
         </div> */}
-        <p>{props.job}</p> 
-        <div><input type='text' onChange={props.onchangename} value={props.name}></input></div> 
-        <button className='button button-red'onClick={props.ondelete}>Delete</button>
-        <div>{props.children}</div>
+        <p>{this.props.job}</p> 
+        <div><input type='text' onChange={this.props.onchangename} value={this.props.name}></input></div> 
+        <button className='button button-red'onClick={this.props.ondelete}>Delete</button>
+        <div>{this.props.children}</div>
       </div>
     </div>
     )
+    }
+    
 }
 
 export default Card
