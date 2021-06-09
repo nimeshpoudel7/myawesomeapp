@@ -2,11 +2,11 @@ import React ,{useState,useEffect} from 'react'
 import './App.css';
 import Card from './Card'
 import {ThemeProvider} from 'styled-components'
-import {Button,Input} from './element/Button'
+import {Input} from './element/Button'
 import axios from 'axios'
 
-const theme = {
-  mango:'orange',
+const theme1 = {
+  mango:'white',
   primary:'green'
  
 }
@@ -22,23 +22,23 @@ function App() {
   
  
   // const  [name, setName] = useState('Nimesh Poudel')
- const [showCard, setshowCard] = useState(false)
- const  [objUserDetails, setobjUserDetails] = useState([])
+ const [id, setId] = useState(1)
+ const  [objUserDetail, setobjUserDetail] = useState([])
 
  // promises in use efect
 useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
+    axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
   .then (responseJson => {
     console.log(responseJson.data)
-    setobjUserDetails(responseJson.data)
+    setobjUserDetail(responseJson.data)
   })
   .catch(responseJson => {
     console.log('fails')
   })
-},[])
-// useEffect(() => {
-//   alert('appjs')
-// },[showCard])
+},[id])
+useEffect(() => {
+  alert('appjs')
+},[objUserDetail])
 // const NamechangeOject=(event,id)=>{
 //   //1 which card
 //   const CardIndex=objUserDetails.findIndex((pass)=>{
@@ -54,41 +54,41 @@ useEffect(() => {
 // }
 const NamechangeOject=(event,id)=>{
   //1. which object
-  const findCardIndex= objUserDetails.findIndex((passingobject)=>{
-    return passingobject.id===id
-  })
+  // const findCardIndex= objUserDetail.findIndex((passingobject)=>{
+  //   return passingobject.id===id
+  // })
   //2. copy objct
-  const card_copy=[...objUserDetails]
+  const card_copy={...objUserDetail}
   //3. modify object
-  card_copy[findCardIndex].name=event.target.value
+  card_copy.name=event.target.value
   //4.set object
-  setobjUserDetails(card_copy)
+  setobjUserDetail(card_copy)
   
 }
-const streetChangeobj=(event,id)=>{
-  // 1. which card
-  const cardFindFindex =objUserDetails.findIndex((pass)=>{
-    return pass.id===id
-  })
-  // 2.copycard
-  const copy_card =[...objUserDetails]
-  // 3.modifi card
-  copy_card[cardFindFindex].address.street=event.target.value
-  // 4.set card
-  setobjUserDetails(copy_card)
-}
+// const streetChangeobj=(event,id)=>{
+//   // 1. which card
+//   const cardFindFindex =objUserDetails.findIndex((pass)=>{
+//     return pass.id===id
+//   })
+//   // 2.copycard
+//   const copy_card =[...objUserDetails]
+//   // 3.modifi card
+//   copy_card[cardFindFindex].address.street=event.target.value
+//   // 4.set card
+//   setobjUserDetails(copy_card)
+// }
 
 // const objeForUser=()=>{
 //   setobjUserDetails(objUserDetails)
 // }
-  const deletechangehandler=(objdetails)=>{
-    const deletedata=[...objUserDetails]
-    console.log(deletedata)
-    deletedata.splice(objdetails,1)
-    // console.log("dele "+deletedata)
-    setobjUserDetails(deletedata)
+  // const deletechangehandler=(objdetails)=>{
+  //   const deletedata=[...objUserDetails]
+  //   console.log(deletedata)
+  //   deletedata.splice(objdetails,1)
+  //   // console.log("dele "+deletedata)
+  //   setobjUserDetails(deletedata)
     
-  }
+  // }
   // useEffect(() => {
   //   alert('appjs')
   // },[objUserDetails])
@@ -102,13 +102,13 @@ const streetChangeobj=(event,id)=>{
   //   buttonStyle.backgroundColor='pink';
   // }
   const classes=['button']
-   if (objUserDetails.length<3) {
-     classes.push('red')
-   }
-    if (objUserDetails.length<2){
-    classes.push('pink')
-    console.log('pink')
-  }
+  //  if (objUserDetails.length<3) {
+  //    classes.push('red')
+  //  }
+  //   if (objUserDetails.length<2){
+  //   classes.push('pink')
+  //   console.log('pink')
+  // }
   
   // const classes=['checkbtn']
   // if (objUserDetails.length<3){
@@ -120,28 +120,28 @@ const streetChangeobj=(event,id)=>{
   //   console.log('pink')
   // }
   
-  const changevalue=()=>{
-    setshowCard(!showCard)
-  }
-  let  textmsg =''
-  if (showCard===true) {
-    textmsg='hide'
-  } else {
-    textmsg='show' 
-  }
+  // const changevalue=()=>{
+  //   setshowCard(!showCard)
+  // }
+  // let  textmsg =''
+  // if (showCard===true) {
+  //   textmsg='hide'
+  // } else {
+  //   textmsg='show' 
+  // }
  
-   const hideandshow=  showCard?( objUserDetails.map((details,acc)=>{
+  //  const hideandshow=  showCard?( objUserDetails.map((details,acc)=>{
 
-    return <Card
-    name={details.name}
-    phone={details.phone}
-    key={details.id}
-    street={details.address.street}
-    ondelete={()=>deletechangehandler(acc)}
-    onchangename={(event)=> NamechangeOject(event,details.id)}
-    onchnagestreet={(event)=>streetChangeobj(event,details.id)}
-    />})
-   ):null
+  //   return <Card
+  //   name={details.name}
+  //   phone={details.phone}
+  //   key={details.id}
+  //   street={details.address.street}
+  //   ondelete={()=>deletechangehandler(acc)}
+  //   onchangename={(event)=> NamechangeOject(event,details.id)}
+  //   onchnagestreet={(event)=>streetChangeobj(event,details.id)}
+  //   />})
+  //  ):null
    
   // const newobj=objUserDetails.reduce((acc,index)=>{
     
@@ -154,12 +154,21 @@ const streetChangeobj=(event,id)=>{
   
   return (
   <div className="App">
-    <ThemeProvider theme={theme}>
-    <Button color='primary' length={objUserDetails.length}>hey</Button>
-    <Button color='mango' length={objUserDetails.length}>hello</Button>
-    <button className={classes.join(' ')}  onClick={changevalue} >{textmsg}</button>
-    {hideandshow}
-    <Input color='mango'></Input>
+    <ThemeProvider theme={theme1}>
+    {/* <Button color='primary' length={objUserDetails.length}>hey</Button>
+    <Button color='mango' length={objUserDetails.length}>hello</Button> */}
+    {/* <button className={classes.join(' ')}  onClick={changevalue} >{textmsg}</button> */}
+    <Input color='mango' value={id} onChange={event=>setId(event.target.value)}></Input>
+    <Card
+    name={objUserDetail.name}
+    phone={objUserDetail.phone}
+    key={objUserDetail.id}
+    // street={objUserDetail.address.street}
+    // ondelete={()=>deletechangehandler(acc)}
+    onchangename={(event)=> NamechangeOject(event,objUserDetail.id)}
+    // onchnagestreet={(event)=>streetChangeobj(event,details.id)}
+    />
+  
     </ThemeProvider>
   </div>
   );

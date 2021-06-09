@@ -21,5 +21,5 @@ export const Input = styled.input`
   margin: 0.5em;
   color: ${props => props.outputColor || "palevioletred"};
   background: ${props => props.theme[props.color]};;
-  border: none;
+  border:  solid black;
   border-radius: 3px; `;

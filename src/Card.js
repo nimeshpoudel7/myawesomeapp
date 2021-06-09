@@ -29,7 +29,7 @@ const Card = (props) => {
         <p>{props.phone}</p> 
         <p>{props.street}</p>
        <input type='text' onChange={props.onchangename} value={props.name}></input>
-       <input type='text' onChange={props.onchnagestreet} value={props.street}></input>
+       {/* <input type='text' onChange={props.onchnagestreet} value={props.street}></input> */}
         <button className='button button-red'onClick={props.ondelete}>Delete</button>
         {/* <div>{props.children}</div> */}
       </div>
