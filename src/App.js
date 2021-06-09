@@ -3,6 +3,7 @@ import './App.css';
 import Card from './Card'
 import {ThemeProvider} from 'styled-components'
 import {Button,Input} from './element/Button'
+import axios from 'axios'
 
 const theme = {
   mango:'orange',
@@ -22,28 +23,22 @@ function App() {
  
   // const  [name, setName] = useState('Nimesh Poudel')
  const [showCard, setshowCard] = useState(false)
- const  [objUserDetails, setobjUserDetails] = useState([
-   {
-  id:'sas',
-  name: 'mane Schuster',
-  title: ' Operations Producer',
-  avatar: 'https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
- },
- {
-  id:'saaa',
-  name: 'sahe Schuster',
-  title: 'International  Producer',
-  avatar: 'https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
- },
-{
-  id:'caa',
-  name: 'hehanjana Schuster',
-  title: 'International Operations ',
-  avatar: 'https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
- }
-])
+ const  [objUserDetails, setobjUserDetails] = useState([])
 
-
+ // promises in use efect
+useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+  .then (responseJson => {
+    console.log(responseJson.data)
+    setobjUserDetails(responseJson.data)
+  })
+  .catch(responseJson => {
+    console.log('fails')
+  })
+},[])
+// useEffect(() => {
+//   alert('appjs')
+// },[showCard])
 // const NamechangeOject=(event,id)=>{
 //   //1 which card
 //   const CardIndex=objUserDetails.findIndex((pass)=>{
@@ -68,6 +63,19 @@ const NamechangeOject=(event,id)=>{
   card_copy[findCardIndex].name=event.target.value
   //4.set object
   setobjUserDetails(card_copy)
+  
+}
+const streetChangeobj=(event,id)=>{
+  // 1. which card
+  const cardFindFindex =objUserDetails.findIndex((pass)=>{
+    return pass.id===id
+  })
+  // 2.copycard
+  const copy_card =[...objUserDetails]
+  // 3.modifi card
+  copy_card[cardFindFindex].address.street=event.target.value
+  // 4.set card
+  setobjUserDetails(copy_card)
 }
 
 // const objeForUser=()=>{
@@ -81,9 +89,9 @@ const NamechangeOject=(event,id)=>{
     setobjUserDetails(deletedata)
     
   }
-  useEffect(() => {
-    alert('appjs')
-  },[objUserDetails])
+  // useEffect(() => {
+  //   alert('appjs')
+  // },[objUserDetails])
   // const buttonStyle={
   // backgroundColor: '#4CAF50'
   // }
@@ -125,12 +133,13 @@ const NamechangeOject=(event,id)=>{
    const hideandshow=  showCard?( objUserDetails.map((details,acc)=>{
 
     return <Card
-    avatar='https://cdn.fakercloud.com/avatars/rachelreveley_128.jpg'
     name={details.name}
-    job={details.title}
+    phone={details.phone}
     key={details.id}
+    street={details.address.street}
     ondelete={()=>deletechangehandler(acc)}
     onchangename={(event)=> NamechangeOject(event,details.id)}
+    onchnagestreet={(event)=>streetChangeobj(event,details.id)}
     />})
    ):null
    
