@@ -9,19 +9,19 @@ const Card = (props) => {
         setY(a.clientY)
     }
     // console.log('mouse events'+x +y)
-    useEffect(() => {
-      // window.addEventListener('click',mouseMovement)
-      window.addEventListener('mousemove',mouseMovement)
-      return () => {
-        window.removeEventListener('mousemove',mouseMovement)
-        console.log('clean completed')
-      }
-    }, [])
+    // useEffect(() => {
+    //   // window.addEventListener('click',mouseMovement)
+    //   window.addEventListener('mousemove',mouseMovement)
+    //   return () => {
+    //     window.removeEventListener('mousemove',mouseMovement)
+    //     console.log('clean completed')
+    //   }
+    // }, [])
     return (
         <div className="card">
       <div className="container">
-      <p>x: {x}</p>
-      <p>x: {y}</p>
+      {/* <p>x: {x}</p>
+      <p>x: {y}</p> */}
         <h4><b>{props.name}</b></h4>
         {/* <div>
         <input type='text' value={props.name} onChange={props.onChangeName}/>

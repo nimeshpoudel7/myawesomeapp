@@ -36,9 +36,9 @@ useEffect(() => {
     console.log('fails')
   })
 },[id])
-useEffect(() => {
-  alert('appjs')
-},[objUserDetail])
+// useEffect(() => {
+//   alert('appjs')
+// },[objUserDetail])
 // const NamechangeOject=(event,id)=>{
 //   //1 which card
 //   const CardIndex=objUserDetails.findIndex((pass)=>{
