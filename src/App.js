@@ -1,4 +1,4 @@
-import React ,{useState} from 'react'
+import React ,{useState,useEffect} from 'react'
 import './App.css';
 import Card from './Card'
 import {ThemeProvider} from 'styled-components'
@@ -43,6 +43,7 @@ function App() {
  }
 ])
 
+
 // const NamechangeOject=(event,id)=>{
 //   //1 which card
 //   const CardIndex=objUserDetails.findIndex((pass)=>{
@@ -80,6 +81,9 @@ const NamechangeOject=(event,id)=>{
     setobjUserDetails(deletedata)
     
   }
+  useEffect(() => {
+    alert('appjs')
+  },[objUserDetails])
   // const buttonStyle={
   // backgroundColor: '#4CAF50'
   // }
